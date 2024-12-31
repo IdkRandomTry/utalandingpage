@@ -1826,7 +1826,7 @@ FSS.SVGRenderer.prototype.formatStyle = function (color) {
 
                         if (D > 0) {
                             // Interpolate the position of the light towards the attractor
-                            var lerpSpeed = 100;  // Adjust this value for smoother or faster movement
+                            var lerpSpeed = 50;  // Adjust this value for smoother or faster movement
 
                             // Get the direction vector from the light to the attractor
                             var direction = FSS.Vector3.create(attractor[0] - light.position[0], attractor[1] - light.position[1], attractor[2] - light.position[2]);
