@@ -1821,19 +1821,30 @@ FSS.SVGRenderer.prototype.formatStyle = function (color) {
                         FSS.Vector3.set(light.position);
                         FSS.Vector3.add(light.position, FSS.Vector3.create(LIGHT[l].position[0], LIGHT[l].position[1], LIGHT[l].zOffset));
                     } else {
-                        // Calculate the force Luke!
+                        // Fuck the force Luke!
                         var D = Math.clamp(FSS.Vector3.distanceSquared(light.position, attractor), LIGHT[l].minDistance, LIGHT[l].maxDistance);
-                        var F = LIGHT[l].gravity * light.mass / D;
-                        FSS.Vector3.subtractVectors(light.force, attractor, light.position);
-                        FSS.Vector3.normalise(light.force);
-                        FSS.Vector3.multiplyScalar(light.force, F);
-                        // Update the light position
-                        FSS.Vector3.set(light.acceleration);
-                        FSS.Vector3.add(light.acceleration, light.force);
-                        FSS.Vector3.add(light.velocity, light.acceleration);
-                        FSS.Vector3.multiplyScalar(light.velocity, LIGHT[l].dampening);
-                        FSS.Vector3.limit(light.velocity, LIGHT[l].minLimit, LIGHT[l].maxLimit);
-                        FSS.Vector3.add(light.position, light.velocity);
+
+                        if (D > 0) {
+                            // Interpolate the position of the light towards the attractor
+                            var lerpSpeed = 20;  // Adjust this value for smoother or faster movement
+
+                            // Get the direction vector from the light to the attractor
+                            var direction = FSS.Vector3.create(attractor[0] - light.position[0], attractor[1] - light.position[1], attractor[2] - light.position[2]);
+
+                            // Normalize the direction vector
+                            FSS.Vector3.normalise(direction);
+
+                            // Move the light towards the attractor
+                            var movement = FSS.Vector3.create(direction[0] * lerpSpeed, direction[1] * lerpSpeed, direction[2] * lerpSpeed);
+                            FSS.Vector3.add(light.position, movement);
+                        } else {
+                            // If close enough to the attractor, stop movement
+                            FSS.Vector3.set(light.velocity, 0, 0, 0);
+                            FSS.Vector3.set(light.force, 0, 0, 0);
+                        }
+
+
+
                     }
 
                     light_index++;

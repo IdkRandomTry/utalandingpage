@@ -9,98 +9,81 @@
     <style>
         body {
             color: #fff;
+            margin: 0;
+            /* Remove default margin to prevent scrollbars */
+            overflow: hidden;
+            /* Prevent scrollbars */
         }
 
-        h1 {
-            margin: 0;
-            padding: 0;
-            margin-left: 150px;
+        #geometryangle-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 
 <body>
-    <div style="position: fixed; left: 0; right: 0; top: 0; bottom: 0;"></div>
-    <div>
-        <div class="jquery-script-ads" style="margin:0px auto 0 150px;">
-            <script type="text/javascript"><!--
-google_ad_client = "ca-pub-2783044520727903";
-/* jQuery_demo */
-                google_ad_slot = "2780937993";
-                google_ad_width = 728;
-                google_ad_height = 90;
-                //-->
-            </script>
-            <script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-
-    </div>
+    <div id="geometryangle-container"></div>
     <script>
         $(document).ready(function () {
-            $('body').Geometryangle({ mesh: {}, lights: [{}], line: {}, vertex: {} });
+            $('#geometryangle-container').Geometryangle({
+
+                // handle transparent colors
+                mesh: {
+                    width: 2,
+                    height: 2,
+                    depth: 10,
+                    columns_auto: true,
+                    rows_auto: true,
+                    zoom: 1,
+                    xRange: 0.8,
+                    yRange: 0.1,
+                    zRange: 1.0,
+                    ambient: 'rgba(10, 10, 105, 1)',  // Pastel light blue
+                    diffuse: 'rgba(10, 75, 20, 1)', // Pastel light pink
+                    background: 'rgb(255, 255, 255)',  // Alice blue (pastel blue)
+                    speed: 0.0002, //Speed of animation
+                    fluctuationSpeed: 0,
+                    fluctuationIntensity: 0,
+                    draw: true
+                },
+
+                lights: {
+                    count: 1,
+                    xyScalar: 0,
+                    zOffset: 0,
+                    ambient: 'rgba(255, 10, 10, 1)',  // Pastel lavender
+                    diffuse: 'rgba(255, 20, 20, 1)',  // Pastel peach
+                    speed: 100,
+                    gravity: 0,
+                    dampening: 0,
+                    autopilot: true,
+                    draw: false
+                },
+
+                line: {
+                    fill: "rgba(255, 255, 255, 0.5)",  // Semi-transparent pastel blue
+                    thickness: 0.95,  // Increased thickness to make edges more visible
+                    fluctuationIntensity: 0,
+                    fluctuationSpeed: 0.5,
+                    draw: true  // Ensure lines are drawn
+                },
+
+                vertex: {
+                    radius: 0.2,  // Set a small radius for vertices to make them visible
+                    fill: "rgba(255, 182, 193, 0)",  // Semi-transparent pastel pink
+                    fluctuationSpeed: 0.5,
+                    fluctuationIntensity: 0,
+                    strokeWidth: 1,  // Set stroke width to make the vertex edges visible
+                    strokeColor: "rgba(0, 0, 0, 0)",  // Pastel lavender stroke
+                    draw: true  // Ensure vertices are drawn
+                }
+
+            });
         });
-    </script>
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-36251023-1']);
-        _gaq.push(['_setDomainName', 'jqueryscript.net']);
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
     </script>
 
 </body>
