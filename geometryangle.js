@@ -1696,8 +1696,8 @@ FSS.SVGRenderer.prototype.formatStyle = function (color) {
                 }
                 var ratio_x = width / 1000;
                 var ratio_y = height / 1000;
-                var x_tiles = Math.round(ratio_x * 10) * MESH.zoom;
-                var y_tiles = Math.round(ratio_y * 10) * MESH.zoom;
+                var x_tiles = Math.round(ratio_x * 12) * MESH.zoom;
+                var y_tiles = Math.round(ratio_y * 12) * MESH.zoom;
                 MESH.columns = (MESH.columns_auto === true ? x_tiles : MESH.columns);
                 MESH.rows = (MESH.rows_auto === true ? y_tiles : MESH.rows);
                 renderer.setSize(width, height);
@@ -1826,7 +1826,7 @@ FSS.SVGRenderer.prototype.formatStyle = function (color) {
 
                         if (D > 0) {
                             // Interpolate the position of the light towards the attractor
-                            var lerpSpeed = 20;  // Adjust this value for smoother or faster movement
+                            var lerpSpeed = 100;  // Adjust this value for smoother or faster movement
 
                             // Get the direction vector from the light to the attractor
                             var direction = FSS.Vector3.create(attractor[0] - light.position[0], attractor[1] - light.position[1], attractor[2] - light.position[2]);
